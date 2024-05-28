@@ -1,79 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jumpscare Example</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-            overflow: hidden;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .jumpscare {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .jumpscare video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .error {
-            color: white;
-            font-size: 24px;
-        }
-    </style>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Buat Kamu😙</title>
+<meta name='robots' content='max-image-preview:large, noindex, noarchive' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<meta name="viewport" content="width=device-width"/>
+<meta property="og:title" content="Admin Login">
+<meta property="og:image" content="">
+<meta property="og:description" content="administrator">
+<meta name="twitter:image:src" content="">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+<style type="text/css">
+    p {
+        margin: 0;
+    }
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: "Inter", sans-serif;
+        text-align: center;
+        background-color: #f0f0f0;
+        overflow: hidden;
+    }
+    .content {
+        padding: 50px;
+    }
+    .overlay, .scare {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+    }
+    p.overlay-title {
+        font-size: 24px;
+        font-weight: 900;
+        color: black;
+        line-height: 1;
+        margin-bottom: 16px;
+    }
+    .overlay-button {
+        display: inline-flex;
+        align-items: center;
+        height: 40px;
+        padding-right: 24px;
+        padding-left: 24px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        border-radius: 4px;
+        margin: 4px;
+        cursor: pointer;
+    }
+    .overlay-buttons-wrapper {
+        margin: -8px;
+    }
+    #accept-button {
+        background-color: #9f200f;
+        color: white;
+    }
+    #decline-button {
+        color: #9f200f;
+        border: 2px solid #9f200f;
+    }
+    p.overlay-description {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.5);
+        line-height: 1.25;
+        margin-bottom: 32px;
+    }
+    a.overlay-link {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #9f200f;
+        line-height: 1;
+        position: relative;
+        margin-top: 16px;
+    }
+    a.overlay-link::before {
+        position: absolute;
+        content: "";
+        height: calc(50% + 4px);
+        width: calc(100% + 8px);
+        bottom: -4px;
+        left: -4px;
+        background-color: rgba(132, 94, 194, 0.1);
+    }
+    .overlay-body {
+        max-width: 512px;
+        text-align: center;
+    }
+    .overlay.hidden {
+        display: none;
+    }
+    .scare {
+        z-index: 1;
+        display: none;
+    }
+    video#video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    video#video::-webkit-media-controls-enclosure {
+        display: none !important;
+    }
+</style>
 </head>
 <body>
-    <div class="content">
-        <h1>Selamat Datang Du Website Kami</h1>
-        <p>Website Ini Hanya Untuk Tujuan Edukasi</p>
-    </div>
+<div class="content">
+    <h1>Selamat Datang Di Website Kami</h1>
+    <p>Ketuk Ketuk layar 3 kali Untuk Membuka Website</p>
+</div>
 
-    <div class="jumpscare" id="jumpscare">
-        <video id="jumpscare-video" src="https://raw.githubusercontent.com/pajardev/pajardev.github.io/main/jumpscare.mp4" preload="auto" onerror="showError()"></video>
-        <div class="error" id="error-message" style="display:none;">The video could not be loaded</div>
-    </div>
+<div class="scare">
+    <video id="video" class="video" src="https://raw.githubusercontent.com/pajardev/pajardev.github.io/main/jumpscare.mp4" preload="auto"></video>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Time in milliseconds before the jumpscare appears (e.g., 5 seconds)
-            const jumpscareTime = 1000; // 5 seconds
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const jumpscareTime = 5000; // 5 seconds
+        const video = document.getElementById("video");
+        const scare = document.querySelector(".scare");
 
-            // Function to show the jumpscare
-            function showJumpscare() {
-                const jumpscare = document.getElementById('jumpscare');
-                const jumpscareVideo = document.getElementById('jumpscare-video');
-                jumpscare.style.display = 'flex';
-                jumpscareVideo.play();
-            }
+        function showJumpscare() {
+            scare.style.display = 'block';
+            video.play().catch(error => {
+                console.error('Error playing video:', error);
+            });
+        }
 
-            // Function to show an error message if the video fails to load
-            function showError() {
-                const errorMessage = document.getElementById('error-message');
-                errorMessage.style.display = 'block';
-            }
-
-            // Set a timeout to show the jumpscare after a certain time
-            setTimeout(showJumpscare, jumpscareTime);
-        });
-    </script>
+        // Show jumpscare after a certain time
+        setTimeout(showJumpscare, jumpscareTime);
+    });
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"85f9e69679bd45ba","r":1,"version":"2024.2.4","token":"af76a0f2ef2c4842bd3334f3c2936a9f"}' crossorigin="anonymous"></script>
 </body>
 </html>
