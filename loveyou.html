@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fajar IT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Agar konten tetap di tengah layar */
+        }
+        .centered-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #ffffff; /* Latar belakang putih untuk teks */
+            border-radius: 10px;
+        }
+        .centered-content img {
+            max-width: 100%;
+            border-radius: 10px; /* Sudut gambar melengkung */
+        }
+        .centered-text {
+            margin-top: 20px; /* Jarak ke atas untuk teks */
+        }
+        .centered-text b {
+            margin-bottom: 10px; /* Atur jarak ke bawah untuk teks tebal */
+        }
+        .music-player {
+            text-align: center;
+            margin-top: 100px; /* Atur jarak ke atas untuk pemutar musik */
+        }
+        .music-player img {
+            width: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-content">
+        <img src="jupri1.png" alt="Gambar Lu Kontol"> <!-- Tambahkan gambar di sini -->
+        
+        <div class="centered-text">
+            <b>Nama aku jupri</b><br>
+            <b>Aku mau bilang ilove you</b><br>
+            <b>ilove you sayang 😘</b><br>
+        </div>
+
+        <div class="music-player">
+            <audio id="myAudio">
+                <source src="https://raw.githubusercontent.com/japanakatsuki/japanakatsuki.github.io/main/akatsuki.mp3" type="audio/mpeg">
+                Browser lu gak support kontol
+            </audio>
+            <img src="audio.png" alt="Play Music" onclick="playMusic()">
+        </div>
+    </div>
+    <script>
+        function playMusic() {
+            var audio = document.getElementById('myAudio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+</body>
+</html>
+<!--Fajar Developer-->
