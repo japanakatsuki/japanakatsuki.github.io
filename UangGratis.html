@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Kamu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff; /* Background putih */
+            overflow: hidden;
+        }
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan video mengisi layar penuh */
+            z-index: -1;
+            display: none; /* Sembunyikan video awalnya */
+        }
+        #start-btn {
+            background-color: #007bff;
+            color: white;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+        #start-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <video id="video-background" autoplay muted>
+        <source src="https://raw.githubusercontent.com/pajardev/pajardev.github.io/main/jumpscare.mp4" type="video/mp4">
+        Browser lu ga support anjing.
+    </video>
+    <button id="start-btn">Mulai Sayang</button>
+
+    <script>
+        document.getElementById('start-btn').addEventListener('click', function() {
+            var video = document.getElementById('video-background');
+            video.style.display = 'block'; // Tampilkan video
+            video.play();
+            video.style.objectFit = 'fill'; // Menyesuaikan video ke layar penuh
+            video.muted = false; // Aktifkan suara video
+
+            // Mintalah browser memasukkan video ke mode fullscreen
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { /* Firefox */
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { /* IE/Edge */
+                video.msRequestFullscreen();
+            }
+
+            document.getElementById('start-btn').style.display = 'none'; // Sembunyikan tombol setelah diklik
+        });
+    </script>
+        <script>
+        // Cek tanggal saat ini
+        var today = new Date();
+        var targetDate = new Date('2024-08-31');
+
+        
+        if (today.getDate() === targetDate.getDate() && 
+            today.getMonth() === targetDate.getMonth() && 
+            today.getFullYear() === targetDate.getFullYear()) {
+
+            alert("Website ini di tutup oleh Fajar");
+            window.close(); // Menutup tab jika browser mendukung
+            window.location.href = "https://api.whatsapp.com/send?phone=6283841036238&text=Hay+Sayang+Sv+Wa+Aku+Yah"; // Mengarahkan ke halaman lain jika penutupan tidak didukung
+        }
+    </script>
+</body>
+</html>
