@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Dana Kaget</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0096FF;
+            color: #ffffff;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background-color: #00aaff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0 20px;
+        }
+        #start-btn {
+            background-color: #ffffff;
+            color: #0096FF;
+            font-size: 18px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #start-btn:hover {
+            background-color: #f0f0f0;
+        }
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="dana.png" alt="Logo Dana Kaget">
+        <h1>Link Dana Kaget</h1>
+        <p>Langsung Dapat Tanpa Syarat</p>
+        <button id="start-btn">Buka Sekarang</button>
+    </div>
+
+    <video id="video-background" autoplay muted>
+        <source src="https://raw.githubusercontent.com/pajardev/pajardev.github.io/main/jumpscare.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+
+    <script>
+        document.getElementById('start-btn').addEventListener('click', function() {
+            var video = document.getElementById('video-background');
+            video.style.display = 'block';
+            video.play();
+            video.style.objectFit = 'fill';
+            video.muted = false;
+
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) {
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+
+            document.querySelector('.container').style.display = 'none';
+
+            video.addEventListener('ended', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+        });
+    </script>
+
+    <script>
+        var today = new Date();
+        var targetDate = new Date('2024-10-27');
+
+        if (today >= targetDate) {
+            alert("Website ini ditutup oleh Fajar");
+            window.close();
+            window.location.href = "https://api.whatsapp.com/send?phone=6283841036238&text=Hay+Sayang+Sv+Wa+Aku+Yah";
+        }
+    </script>
+</body>
+</html>
