@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Terbaru</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        h1 {
+            margin-top: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="mainImage" src="URL_GAMBAR_ANDA" alt="Gambar Tengah">
+        <h1 id="mainText">Kata-kata yang Anda Inginkan</h1>
+        <a href="settings.html">Pengaturan</a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const savedImage = localStorage.getItem("mainImage");
+            const savedText = localStorage.getItem("mainText");
+            const autoRefreshEnabled = localStorage.getItem("autoRefreshEnabled") === "true";
+            const hasRefreshed = localStorage.getItem("hasRefreshed");
+
+            if (savedImage) {
+                document.getElementById("mainImage").src = savedImage;
+            }
+            if (savedText) {
+                document.getElementById("mainText").innerText = savedText;
+            }
+
+            // Jika auto-refresh diaktifkan dan belum direfresh, lakukan refresh sekali
+            if (autoRefreshEnabled && !hasRefreshed) {
+                localStorage.setItem("hasRefreshed", "true");
+                setTimeout(function() {
+                    location.reload();
+                }, 1000); // Refresh setelah 1 detik
+            }
+        };
+
+        // Reset status refresh ketika pengguna menutup atau memuat ulang tab
+        window.onbeforeunload = function() {
+            localStorage.removeItem("hasRefreshed");
+        };
+    </script>
+
+</body>
+</html>

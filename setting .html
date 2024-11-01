@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        input[type="file"], input[type="text"] {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            box-sizing: border-box;
+        }
+        .save-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .save-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Pengaturan</h2>
+
+        <!-- Input untuk mengubah gambar -->
+        <input type="file" id="imageUpload" accept="image/*">
+
+        <!-- Input untuk mengubah teks -->
+        <input type="text" id="textInput" placeholder="Masukkan teks baru...">
+
+        <!-- Checkbox untuk mengaktifkan/menonaktifkan auto-refresh -->
+        <label>
+            <input type="checkbox" id="autoRefreshCheckbox"> Aktifkan Auto-Refresh
+        </label>
+
+        <!-- Tombol Simpan Pengaturan -->
+        <button class="save-btn" onclick="saveSettings()">Simpan Pengaturan</button>
+    </div>
+
+    <script>
+        // Fungsi untuk menyimpan pengaturan
+        function saveSettings() {
+            // Ambil elemen gambar dan teks
+            const imageInput = document.getElementById("imageUpload").files[0];
+            const textInput = document.getElementById("textInput").value;
+            const autoRefreshEnabled = document.getElementById("autoRefreshCheckbox").checked;
+
+            // Simpan teks ke localStorage
+            if (textInput) {
+                localStorage.setItem("mainText", textInput);
+            }
+
+            // Simpan gambar ke localStorage
+            if (imageInput) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem("mainImage", e.target.result);
+                };
+                reader.readAsDataURL(imageInput);
+            }
+
+            // Simpan status auto-refresh ke localStorage
+            localStorage.setItem("autoRefreshEnabled", autoRefreshEnabled);
+
+            alert("Pengaturan berhasil disimpan!");
+
+            // Redirect ke halaman utama setelah menyimpan
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 500);
+        }
+
+        // Set status checkbox berdasarkan pengaturan yang tersimpan
+        window.onload = function() {
+            const autoRefreshEnabled = localStorage.getItem("autoRefreshEnabled") === "true";
+            document.getElementById("autoRefreshCheckbox").checked = autoRefreshEnabled;
+        };
+    </script>
+
+</body>
+</html>
